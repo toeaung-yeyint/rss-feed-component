@@ -10,10 +10,26 @@
 	<body>
 		<div class="rss-feed-section">
 			<div class="result-pagination-info">
-				<div class="results-summary"></div>
-				<nav class="pagination-list"></nav>
+				<div class="results-summary" aria-live="assertive">
+					Displaying 1 to 3 of 11 results
+				</div>
+				<nav
+					class="pagination-list"
+					aria-label="Pagination controls. Use Tab or the Up and Down arrow keys to navigate, and press Enter to go to a page."
+				>
+					<button class="pagination-item active-item" aria-label="Page 1 of 3.">
+						1
+					</button>
+					<button class="pagination-item" aria-label="Page 2 of 3.">2</button>
+					<button class="pagination-item" aria-label="Page 3 of 3.">3</button>
+				</nav>
 			</div>
-			<ul class="events-list">
+			<ul
+				class="events-list"
+				data-rss-url="https://talent.deakin.edu.au/content/rss/DeakinTALENTevents"
+				data-card-limit="3"
+				aria-label="RSS feed event section, Use Tab or the Up and Down arrow keys to navigate, and press Enter to view details and register for an event."
+			>
 				<li class="event-card">
 					<a href="#">
 						<img
@@ -63,7 +79,9 @@
 					</a>
 				</li>
 			</ul>
-			<div class="rss-feed-last-updated"></div>
+			<div class="rss-feed-last-updated">
+				Last updated: 22 Dec 2024 04:15 PM
+			</div>
 		</div>
 	</body>
 </html>

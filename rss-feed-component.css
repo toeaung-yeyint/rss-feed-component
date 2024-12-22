@@ -11,6 +11,8 @@ body {
 .rss-feed-section {
 	font-family: "Open Sans", Helvetica, Arial, Lucida, sans-serif !important;
 	color: #1a1a1a !important;
+	display: flex;
+	flex-direction: column;
 }
 .rss-feed-section p {
 	font-size: 14px !important;
@@ -23,6 +25,7 @@ body {
 	display: grid;
 	grid-template-columns: repeat(1, 1fr);
 	gap: 20px;
+	order: -1;
 }
 .event-card {
 	position: relative;
@@ -90,13 +93,55 @@ body {
 .event-location::before {
 	background-image: url("location-pin.svg");
 }
+.result-pagination-info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+}
+.pagination-item {
+	font-family: "Open Sans", Helvetica, Arial, Lucida, sans-serif !important;
+	font-size: 14px !important;
+	line-height: 24px !important;
+	cursor: pointer;
+	background-color: #fff;
+	border: 1px solid #e1e1e1;
+	padding: 5px 15px;
+	transition: background-color 400ms ease-in-out, color 400ms ease-in-out;
+}
+.pagination-item:focus {
+	outline-offset: 0 !important;
+}
+.pagination-item:not(.active-item):hover {
+	background-color: #e1e1e1 !important;
+}
+.active-item {
+	background-color: #006030 !important;
+	border: 1px solid #006030 !important;
+	color: #fff !important;
+}
+.rss-feed-last-updated {
+	margin: 20px 0;
+	text-align: center;
+	padding-top: 10px;
+	font-style: italic;
+	border-top: 1px solid #e1e1e1;
+}
 @media screen and (min-width: 650px) {
-	.rss-feed-section p {
+	.rss-feed-section p,
+	.pagination-item {
 		font-size: 16px !important;
 		line-height: 27px !important;
 	}
 	.events-list {
 		grid-template-columns: repeat(2, 1fr);
+	}
+	.result-pagination-info {
+		flex-direction: row;
+		justify-content: space-between;
+	}
+	.rss-feed-last-updated {
+		text-align: right;
 	}
 }
 @media screen and (min-width: 1150px) {
