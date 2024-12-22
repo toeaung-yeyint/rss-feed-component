@@ -161,3 +161,51 @@ const createEventsCards = async (paginatedEvents) => {
 	const eventsList = document.querySelector(".events-list");
 	eventsList.appendChild(fragment);
 };
+const showResultSummary = (allEvents, startEventIndex, endEventIndex) => {
+	const resultSummary = document.querySelector(".results-summary");
+	resultSummary.textContent = `Displaying ${startEventIndex + 1} to ${
+		endEventIndex < allEvents.length ? endEventIndex : allEvents.length
+	} of ${allEvents.length} results`;
+};
+const createPagination = (allEvents, cardLimit) => {
+	const paginationList = document.querySelector(".pagination-list");
+	const totalPages = Math.ceil(allEvents.length / cardLimit);
+	for (let i = 0; i < totalPages; i++) {
+		const paginationItem = document.createElement("button");
+		paginationItem.classList.add("pagination-item");
+		paginationItem.textContent = i + 1;
+		paginationList.appendChild(paginationItem);
+		if (i === 0) {
+			paginationItem.classList.add("active-item");
+			paginationItem.setAttribute(
+				"aria-label",
+				`Page ${i + 1} of ${totalPages}, active page.`
+			);
+		} else {
+			paginationItem.setAttribute(
+				"aria-label",
+				`Page ${i + 1} of ${totalPages}`
+			);
+		}
+		paginationItem.addEventListener("click", (e) => {
+			const activeItem = document.querySelector(".active-item");
+			activeItem.classList.remove("active-item");
+			e.target.classList.add("active-item");
+			currentPage = e.target.textContent;
+			const startEventIndex = (currentPage - 1) * cardLimit;
+			const endEventIndex = startEventIndex + cardLimit;
+			const paginatedEvents = allEvents.slice(startEventIndex, endEventIndex);
+			const eventsList = document.querySelector(".events-list");
+			eventsList.textContent = "";
+			createEventsCards(paginatedEvents);
+			showResultSummary(allEvents, startEventIndex, endEventIndex);
+		});
+	}
+};
+const getlatestFetchTime = () => {
+	const lastUpdatedElement = document.querySelector(".rss-feed-last-updated");
+	const latestFetchTime = convertToLuxonDateTimeObject(new Date()).toFormat(
+		"DD hh:mm a"
+	);
+	lastUpdatedElement.textContent = `Last updated: ${latestFetchTime}`;
+};
