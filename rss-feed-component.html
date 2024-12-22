@@ -4,84 +4,29 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="rss-feed-component.css" />
+		<script
+			rel="preload"
+			src="https://cdn.jsdelivr.net/npm/luxon@3.4.3/build/global/luxon.min.js"
+		></script>
 		<script src="rss-feed-component.js" defer></script>
 		<title>RSS Feed Component</title>
 	</head>
 	<body>
 		<div class="rss-feed-section">
 			<div class="result-pagination-info">
-				<div class="results-summary" aria-live="assertive">
-					Displaying 1 to 3 of 11 results
-				</div>
+				<p class="results-summary" aria-live="assertive"></p>
 				<nav
 					class="pagination-list"
 					aria-label="Pagination controls. Use Tab or the Up and Down arrow keys to navigate, and press Enter to go to a page."
-				>
-					<button class="pagination-item active-item" aria-label="Page 1 of 3.">
-						1
-					</button>
-					<button class="pagination-item" aria-label="Page 2 of 3.">2</button>
-					<button class="pagination-item" aria-label="Page 3 of 3.">3</button>
-				</nav>
+				></nav>
 			</div>
 			<ul
 				class="events-list"
 				data-rss-url="https://talent.deakin.edu.au/content/rss/DeakinTALENTevents"
 				data-card-limit="3"
 				aria-label="RSS feed event section, Use Tab or the Up and Down arrow keys to navigate, and press Enter to view details and register for an event."
-			>
-				<li class="event-card">
-					<a href="#">
-						<img
-							class="event-image"
-							src="https://wordpress-ms.deakin.edu.au/deakintalent-divi/wp-content/uploads/sites/196/2024/10/Interview-Workshop.jpg"
-							alt=""
-						/>
-						<div class="event-info">
-							<h3 class="event-title">How to Achieve Interview Success</h3>
-							<p class="event-date">13 Jan</p>
-							<p class="event-start-time">02:00 PM AEDT</p>
-							<p class="event-duration">Duration: 60 minutes</p>
-							<p class="event-location">Online</p>
-						</div>
-					</a>
-				</li>
-				<li class="event-card">
-					<a href="#">
-						<img
-							class="event-image"
-							src="https://wordpress-ms.deakin.edu.au/deakintalent-divi/wp-content/uploads/sites/196/2024/10/Interview-Workshop.jpg"
-							alt=""
-						/>
-						<div class="event-info">
-							<h3 class="event-title">How to Achieve Interview Success</h3>
-							<p class="event-date">13 Jan</p>
-							<p class="event-start-time">02:00 PM AEDT</p>
-							<p class="event-duration">Duration: 60 minutes</p>
-							<p class="event-location">Online</p>
-						</div>
-					</a>
-				</li>
-				<li class="event-card">
-					<a href="#">
-						<img
-							class="event-image"
-							src="https://wordpress-ms.deakin.edu.au/deakintalent-divi/wp-content/uploads/sites/196/2024/10/Interview-Workshop.jpg"
-							alt=""
-						/>
-						<div class="event-info">
-							<h3 class="event-title">How to Achieve Interview Success</h3>
-							<p class="event-date">13 Jan</p>
-							<p class="event-start-time">02:00 PM AEDT</p>
-							<p class="event-duration">Duration: 60 minutes</p>
-							<p class="event-location">Online</p>
-						</div>
-					</a>
-				</li>
-			</ul>
-			<div class="rss-feed-last-updated">
-				Last updated: 22 Dec 2024 04:15 PM
-			</div>
+			></ul>
+			<p class="rss-feed-last-updated"></p>
 		</div>
 	</body>
 </html>
