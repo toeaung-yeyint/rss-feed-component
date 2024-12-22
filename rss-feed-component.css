@@ -1,0 +1,114 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+body {
+	max-width: 1200px;
+	margin: 0 auto;
+	margin-top: 100px;
+}
+.rss-feed-section {
+	font-family: "Open Sans", Helvetica, Arial, Lucida, sans-serif !important;
+	color: #1a1a1a !important;
+}
+.rss-feed-section p {
+	font-size: 14px !important;
+	line-height: 24px !important;
+	margin: 0;
+}
+.events-list {
+	list-style-type: none;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(1, 1fr);
+	gap: 20px;
+}
+.event-card {
+	position: relative;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+	transition: box-shadow 300ms ease-in-out, transform 300ms ease-in-out;
+	animation: fadeIn 0.5s linear both;
+}
+.event-card a {
+	text-decoration: none;
+	color: inherit;
+}
+.event-card:hover,
+.event-card:focus {
+	box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+	transform: translateY(-0.55rem);
+}
+.event-image {
+	background-color: gray;
+	width: 100%;
+	height: 220px;
+	object-fit: fill;
+}
+.event-info {
+	padding: 0 20px 20px 20px;
+	display: flex;
+	flex-direction: column;
+	row-gap: 5px;
+}
+.event-title {
+	font-size: 19px !important;
+	line-height: 29px !important;
+	font-weight: 700 !important;
+}
+.event-date {
+	font-weight: 700 !important;
+	position: absolute;
+	top: 0;
+	left: 20px;
+	background: #fff;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+	padding: 1rem 1.5rem;
+	box-shadow: 0 1px 2px 0;
+	z-index: 1;
+}
+.event-start-time::before,
+.event-location::before,
+.event-duration::before {
+	content: "";
+	display: inline-block;
+	width: 1.3rem;
+	height: 1.3rem;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	vertical-align: middle;
+	margin-right: 5px;
+}
+.event-start-time::before {
+	background-image: url("calendar.svg");
+}
+.event-duration::before {
+	background-image: url("clock.svg");
+}
+.event-location::before {
+	background-image: url("location-pin.svg");
+}
+@media screen and (min-width: 650px) {
+	.rss-feed-section p {
+		font-size: 16px !important;
+		line-height: 27px !important;
+	}
+	.events-list {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+@media screen and (min-width: 1150px) {
+	.events-list {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
