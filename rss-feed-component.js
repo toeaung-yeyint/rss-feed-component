@@ -34,3 +34,33 @@ const convertToLuxonDateTimeObject = (originalDateTime, zone) => {
 		{ zone }
 	);
 };
+const getImageUrl = (title) => {
+	switch (true) {
+		case title.toLowerCase().includes("linkedin"):
+			return "linkedin.jpg";
+		case title.toLowerCase().includes("career options"):
+			return "career-options.jpg";
+		case title.toLowerCase().includes("job search"):
+			return "job-search.jpg";
+		case title.toLowerCase().includes("interview success"):
+			return "interview-success.jpg";
+		case title.toLowerCase().includes("strong application"):
+			return "strong-application.jpg";
+		case title.toLowerCase().includes("beyond the degree"):
+			return "beyond-degree.jpg";
+		case title.toLowerCase().includes("are you graduating soon?"):
+			return "graduating.jpg";
+		case title.toLowerCase().includes("coffee meetup"):
+			return "coffee-meetup.jpg";
+		case title.toLowerCase().includes("looking for casual or part-time work"):
+			return "casual-part-time-work.jpg";
+		case title.toLowerCase().includes("australian workplace culture"):
+			return "australian-work-culture.jpg";
+		case title.toLowerCase().includes("know your working rights"):
+			return "working-rights.jpg";
+		case title.toLowerCase().includes("employer month"):
+			return "employer-month.jpg";
+		default:
+			return "generic-banner.jpg";
+	}
+};
