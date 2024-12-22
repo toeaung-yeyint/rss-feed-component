@@ -209,3 +209,19 @@ const getlatestFetchTime = () => {
 	);
 	lastUpdatedElement.textContent = `Last updated: ${latestFetchTime}`;
 };
+const renderEventCards = async (currentPage, rssFeedUrl, cardLimit) => {
+	const allEvents = await fetchEventsFromRssFeed(rssFeedUrl);
+	const startEventIndex = (currentPage - 1) * cardLimit;
+	const endEventIndex = startEventIndex + cardLimit;
+	const paginatedEvents = allEvents.slice(startEventIndex, endEventIndex);
+	createEventsCards(paginatedEvents);
+	showResultSummary(allEvents, startEventIndex, endEventIndex);
+	createPagination(allEvents, cardLimit);
+	getlatestFetchTime();
+};
+let currentPage = 1;
+const rssFeedUrl = document.querySelector(".events-list").dataset.rssUrl;
+const cardLimit = Number.parseInt(
+	document.querySelector(".events-list").dataset.cardLimit
+);
+renderEventCards(currentPage, rssFeedUrl, cardLimit);
