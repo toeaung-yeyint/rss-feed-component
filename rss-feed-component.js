@@ -64,3 +64,59 @@ const getImageUrl = (title) => {
 			return "generic-banner.jpg";
 	}
 };
+const fetchEventsFromRssFeed = async (rssFeedUrl) => {
+	const response = await fetch(rssFeedUrl);
+	if (!response.ok) {
+		throw new Error(`HTTP error! status: ${response.status}`);
+	}
+	const str = await response.text();
+	const data = new DOMParser().parseFromString(str, "text/html");
+	const items = data.querySelectorAll("item");
+	if (items.length <= 0) {
+		return "No items found";
+	}
+	const result = [];
+	items.forEach((item) => {
+		const link = item.querySelector("guid").textContent;
+		const title = item.querySelector("title").textContent;
+		const details = new DOMParser().parseFromString(
+			item.querySelector("description").textContent,
+			"text/html"
+		).body;
+		const startDate = details
+			.querySelector(".entry-dynamicstrings_days .feed-entry-value")
+			.textContent.split(/ at | - /)[0]
+			.split("-")
+			.slice(0, 2)
+			.join(" ");
+		const startTimeStr = details
+			.querySelector(".entry-dynamicstrings_days .feed-entry-value")
+			.textContent.split(/ at | - /)[1];
+		const starTimeWithAustralianTimeZone = convertToLuxonDateTimeObject(
+			new Date(startDate + " " + startTimeStr),
+			"Australia/Sydney"
+		)
+			.toFormat("hh:mm a '('ZZZZZ')'")
+			.replace("(Australian Eastern Standard Time)", "AEST")
+			.replace("(Australian Eastern Daylight Time)", "AEDT");
+		const eventTimeStr = details
+			.querySelector(".entry-dynamicstrings_days .feed-entry-value")
+			.textContent.split(/ at | - /)[2];
+		const duration = calculateDurationInMinutes(
+			convertTo24HourFormat(startTimeStr),
+			convertTo24HourFormat(eventTimeStr)
+		);
+		const location = details.querySelector(
+			".entry-dynamicstrings_location .feed-entry-value"
+		).textContent;
+		result.push({
+			link,
+			title,
+			startDate,
+			starTimeWithAustralianTimeZone,
+			duration,
+			location,
+		});
+	});
+	return result;
+};
